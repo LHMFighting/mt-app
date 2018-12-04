@@ -107,7 +107,7 @@ export default {
           message: '创建密码',
           trigger: 'blur'
         }],
-        pwd: [{
+        cpwd: [{
           required: true,
           message: '确认密码',
           trigger: 'blur'
