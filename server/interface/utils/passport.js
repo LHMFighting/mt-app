@@ -1,7 +1,7 @@
 import passport from 'koa-passport'
  // 策略
 import LocalStrategy from 'passport-local'
-import UserModel from '../../dbs/models/user'
+import UserModel from '../../dbs/models/users'
 
 // 调local策略
 passport.use(new LocalStrategy(async function (username, password, done) {

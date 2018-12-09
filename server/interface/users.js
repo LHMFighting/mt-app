@@ -1,7 +1,7 @@
 import Router from 'koa-router'
 import Redis from 'koa-redis'
 import nodeMailer from 'nodemailer'
-import User from '../dbs/models/users'
+import User from '../dbs/models/users.js'
 import Passport from './utils/passport'
 import Email from '../dbs/config'
 import axios from './utils/axios'
@@ -168,7 +168,7 @@ router.post('/verify', async (ctx, next) => {
 // 退出
 router.get('/exit', async (ctx, next) => {
   // 执行退出的动作
-  await ctx.login()
+  await ctx.logout()
   // 检查现在是不是登录状态
   if (!ctx.isAuthenticated()) {
     ctx.body = {
@@ -185,15 +185,15 @@ router.get('/exit', async (ctx, next) => {
 router.get('/getUser', async (ctx) => {
   // 检查现在是不是登录状态
   if (ctx.isAuthenticated()) {
-    const {username, email} = ctx.session.password.user
-    ctx.body = {
-      user: username,
+    const {username, email} = ctx.session.passport.user
+    ctx.body={
+      user:username,
       email
     }
-  } else {
-    ctx.body = {
-      user: '',
-      email: ''
+  }else{
+    ctx.body={
+      user:'',
+      email:''
     }
   }
 })
