@@ -40,6 +40,7 @@ export default {
     }
   },
   methods: {
+    // 创建购物车
     createCart: async function () {
       let self = this;
       let {
@@ -50,6 +51,7 @@ export default {
         }
       } = await this.$axios.post('/cart/create', {
         params: {
+          // 信息应该从产品库获得，此处没有间产品库
           id: Math.random().toString().slice(3, 9),
           detail: {
             name: self.meta.name,
